@@ -21,10 +21,13 @@ if ((($_FILES["file"]["type"] == "image/gif")
       $img = $_FILES['file']['tmp_name'];
       $firstName = $_POST['first_name'];
       $lastName = $_POST['last_name'];
+      $origin = $_POST['origin'];
+      $dest = $_POST['dest'];
+      $exp = $_POST['exp'];
       $img_info = getimagesize($img);
       $width = $img_info[0];
       $height = $img_info[1];
-      mysql_query("INSERT INTO info (firstName, lastName, ext) VALUES ('$firstName', '$lastName', '$extension')");
+      mysql_query("INSERT INTO info (firstName, lastName, ext, origin, dest, exp) VALUES ('$firstName', '$lastName', '$extension', '$origin', '$dest', '$exp')");
       $id = mysql_insert_id();
       switch ($img_info[2]) {
         case IMAGETYPE_GIF  : $src = imagecreatefromgif($img);  break;
